@@ -60,6 +60,7 @@ const Login = props => {
     axios
       .post('/login', userData)
       .then(res => {
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.Token}`);
         setLoading(false);
         props.history.push('/');
       })
