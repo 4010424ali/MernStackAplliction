@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { loginUser } from '../redux/actions/userAction';
 
 // Material UI stuuf
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,35 +46,31 @@ const useStyles = makeStyles({
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ email: '', password: '', general: '' });
 
+  // const user = useSelector(state => state.user);
+  // const UI = useSelector(state => state.UI);
+  const err = useSelector(state => state.UI.errors);
+  // const dispatch = useDispatch();
   const classes = useStyles();
+
+  useEffect(() => {
+    if (err) {
+      setError({
+        email: err.email,
+        password: err.password,
+        general: err.general
+      });
+    }
+  }, [err]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setLoading(true);
-
     const userData = {
       email,
       password
     };
-
-    axios
-      .post('/login', userData)
-      .then(res => {
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.Token}`);
-        setLoading(false);
-        props.history.push('/');
-      })
-      .catch(err => {
-        setError({
-          email: err.response.data.email,
-          password: err.response.data.password,
-          general: err.response.data.general
-        });
-        setLoading(false);
-      });
+    props.loginUser(userData, props.history);
   };
 
   const handleChange = e => {
@@ -82,6 +81,10 @@ const Login = props => {
       setPassword(e.target.value);
     }
   };
+  const {
+    UI: { loading }
+  } = props;
+
   return (
     <Grid container className={classes.form}>
       <Grid item sm />
@@ -143,4 +146,22 @@ const Login = props => {
   );
 };
 
-export default Login;
+Login.propsTypes = {
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI
+});
+
+const mapActionsToProps = {
+  loginUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Login);
