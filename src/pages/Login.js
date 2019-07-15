@@ -51,7 +51,6 @@ const Login = props => {
   // const user = useSelector(state => state.user);
   // const UI = useSelector(state => state.UI);
   const err = useSelector(state => state.UI.errors);
-  // const dispatch = useDispatch();
   const classes = useStyles();
 
   useEffect(() => {
