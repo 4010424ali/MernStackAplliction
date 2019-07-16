@@ -7,6 +7,9 @@ import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import { uploadImage, logOutUser } from '../redux/actions/userAction';
 
+// components import
+import EditDetails from './EditDetails';
+
 // MUI stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -15,60 +18,16 @@ import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ToolTip from '@material-ui/core/Tooltip';
+import themeFile from '../util/theme';
 
 // Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
-const useStyles = makeStyles({
-  paper: {
-    padding: 20
-  },
-  profile: {
-    '& .image-wrapper': {
-      textAlign: 'center',
-      position: 'relative',
-      '& button': {
-        position: 'absolute',
-        top: '80%',
-        left: '70%'
-      }
-    },
-    '& .profile-image': {
-      width: 200,
-      height: 200,
-      objectFit: 'cover',
-      maxWidth: '100%',
-      borderRadius: '50%'
-    },
-    '& .profile-details': {
-      textAlign: 'center',
-      '& span, svg': {
-        verticalAlign: 'middle'
-      },
-      '& a': {
-        color: 'inherit'
-      }
-    },
-    '& hr': {
-      border: 'none',
-      margin: '0 0 10px 0'
-    },
-    '& svg.button': {
-      '&:hover': {
-        cursor: 'pointer'
-      }
-    }
-  },
-  buttons: {
-    textAlign: 'center',
-    '& a': {
-      margin: '20px 10px'
-    }
-  }
-});
+const useStyles = makeStyles(themeFile);
 
 const Profile = props => {
   const handleImageChange = e => {
@@ -83,6 +42,10 @@ const Profile = props => {
   const handleEditImage = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
+  };
+
+  const handleLogOut = () => {
+    props.logOutUser();
   };
 
   const classes = useStyles();
@@ -140,8 +103,14 @@ const Profile = props => {
               </>
             )}
             <CalendarToday color="primary" />{' '}
-            <span>Joined {dayjs(created_at).format('MMM YYYY')} </span>
+            <span>Joined {dayjs(created_at).format('MMM YYYY')}</span>
           </div>
+          <ToolTip title="Logout" placement="top">
+            <IconButton onClick={handleLogOut}>
+              <KeyboardReturn color="primary" />
+            </IconButton>
+          </ToolTip>
+          <EditDetails />
         </div>
       </Paper>
     ) : (
