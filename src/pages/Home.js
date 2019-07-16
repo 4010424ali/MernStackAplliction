@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
+// redux stuff
+import { connect } from 'react-redux';
+import { getScreams } from '../redux/actions/dataActions';
 
 // Material UI stuff
 import Grid from '@material-ui/core/Grid';
@@ -8,23 +13,16 @@ import Grid from '@material-ui/core/Grid';
 import Scream from '../components/Scream';
 import Profile from '../components/Profile';
 
-const Home = () => {
-  const [screams, setScreams] = useState(null);
-
+const Home = props => {
   useEffect(() => {
-    console.log('useEffect is running');
-    axios
-      .get('/screams')
-      .then(res => {
-        console.log(res.data);
-        setScreams(res.data);
-      })
-      .catch(err => console.log(err));
+    props.getScreams();
   }, []);
+  const { screams, loading } = props.data;
+  console.log(props.data);
   return (
     <Grid container spacing={10}>
       <Grid item sm={8} xs={12}>
-        {screams ? (
+        {!loading ? (
           screams.map(scream => (
             <Scream key={scream.screamsId} scream={scream} />
           ))
@@ -39,4 +37,16 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.protoType = {
+  data: PropTypes.object.isRequired,
+  getScreams: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  data: state.data
+});
+
+export default connect(
+  mapStateToProps,
+  { getScreams }
+)(Home);
