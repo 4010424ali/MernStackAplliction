@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 // redux stuff
 import { connect } from 'react-redux';
 
+// Compoents
+import PostScream from './PostScream';
+
 // Material ui stuff
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,11 +27,7 @@ const Navbar = props => {
       <Toolbar className="nav-container">
         {authenticated ? (
           <>
-            <ToolTip title="Post a Scream" placement="top">
-              <IconButton>
-                <AddIcon />
-              </IconButton>
-            </ToolTip>
+            <PostScream />
             <Link to={'/'}>
               <ToolTip title="Home" placement="top">
                 <IconButton>

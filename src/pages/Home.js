@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 
 // redux stuff
 import { connect } from 'react-redux';
@@ -17,8 +15,8 @@ const Home = props => {
   useEffect(() => {
     props.getScreams();
   }, []);
+
   const { screams, loading } = props.data;
-  console.log(props.data);
   return (
     <Grid container spacing={10}>
       <Grid item sm={8} xs={12}>
@@ -35,11 +33,6 @@ const Home = props => {
       </Grid>
     </Grid>
   );
-};
-
-Home.protoType = {
-  data: PropTypes.object.isRequired,
-  getScreams: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

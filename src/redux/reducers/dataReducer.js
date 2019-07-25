@@ -2,7 +2,9 @@ import {
   SET_SCREAMS,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
-  LOADING_DATA
+  LOADING_DATA,
+  DELETE_SCREAM,
+  POST_SCREAM
 } from '../types';
 
 const initialState = {
@@ -21,8 +23,8 @@ export default function(state = initialState, action) {
     case SET_SCREAMS:
       return {
         ...state,
-        screams: action.payload,
-        loading: false
+        loading: false,
+        screams: action.payload
       };
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
@@ -32,6 +34,19 @@ export default function(state = initialState, action) {
       state.screams[index] = action.payload;
       return {
         ...state
+      };
+    case DELETE_SCREAM:
+      const newIndex = state.screams.findIndex(
+        scream => scream.screamsId === action.payload
+      );
+      state.screams.splice(newIndex, 1);
+      return {
+        ...state
+      };
+    case POST_SCREAM:
+      return {
+        ...state,
+        screams: [action.payload, ...state.screams]
       };
     default:
       return state;

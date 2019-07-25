@@ -31,7 +31,6 @@ const EditDetails = props => {
 
   useEffect(() => {
     const { bio, website, location } = props.credentials;
-    console.log(bio, website, location);
     setBio(bio || '');
     setWebsite(website || '');
     setLocation(location || '');

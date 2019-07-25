@@ -42,7 +42,7 @@ export default function(state = initialState, action) {
           ...state.likes,
           {
             userHandle: state.credentials.handle,
-            screamId: state.payload.screamId
+            screamId: action.payload.screamId
           }
         ]
       };
