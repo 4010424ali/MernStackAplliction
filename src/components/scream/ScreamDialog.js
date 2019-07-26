@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import LikedButton from './LikeButton';
+import Comments from './Comments';
 
 // MATERIAL-UI STUFF
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,7 +71,8 @@ const ScreamDialog = props => {
       likeCount,
       commentCount,
       userImage,
-      userHandle
+      userHandle,
+      comments
     },
     UI: { loading }
   } = props;
@@ -107,6 +109,8 @@ const ScreamDialog = props => {
         </ToolTip>
         <span>{commentCount} comments</span>
       </Grid>
+      <hr className={classes.invisibleSaprater} />
+      <Comments comments={comments} />
     </Grid>
   );
 
