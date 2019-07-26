@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 
 // redux stuff
 import { connect } from 'react-redux';
-import { uploadImage, logOutUser } from '../redux/actions/userAction';
+import { uploadImage, logOutUser } from '../../redux/actions/userAction';
 
 // components import
 import EditDetails from './EditDetails';
@@ -18,7 +18,7 @@ import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ToolTip from '@material-ui/core/Tooltip';
-import themeFile from '../util/theme';
+import themeFile from '../../util/theme';
 
 // Icons
 import LocationOn from '@material-ui/icons/LocationOn';

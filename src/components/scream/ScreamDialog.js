@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+import LikedButton from './LikeButton';
 
 // MATERIAL-UI STUFF
 import { makeStyles } from '@material-ui/core/styles';
 import ToolTip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,9 +16,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // Icon
 import CloseIcon from '@material-ui/icons/Close';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat';
 
 import { connect } from 'react-redux';
-import { getScream } from '../redux/actions/dataActions';
+import { getScream } from '../../redux/actions/dataActions';
 
 const useStyle = makeStyles({
   invisibleSaprater: {
@@ -38,6 +38,15 @@ const useStyle = makeStyles({
   closeButton: {
     position: 'absolute',
     left: '91%'
+  },
+  expandButton: {
+    position: 'absolute',
+    left: '90%'
+  },
+  spinnerDiv: {
+    textAlign: 'center',
+    marginTop: 50,
+    marginBottom: 50
   }
 });
 
@@ -66,7 +75,9 @@ const ScreamDialog = props => {
     UI: { loading }
   } = props;
   const dialogContent = loading ? (
-    <CircularProgress size={200} />
+    <div className={classes.spinnerDiv}>
+      <CircularProgress size={200} thickness={2} />
+    </div>
   ) : (
     <Grid container spacing={10}>
       <Grid item sm={5}>
@@ -87,6 +98,14 @@ const ScreamDialog = props => {
         </Typography>
         <hr className={classes.invisibleSaprater} />
         <Typography variant="body1">{body}</Typography>
+        <LikedButton screamId={screamId} />
+        <span>{likeCount} likes</span>
+        <ToolTip title="comments" placement="top">
+          <IconButton className="button">
+            <ChatIcon color="primary" />
+          </IconButton>
+        </ToolTip>
+        <span>{commentCount} comments</span>
       </Grid>
     </Grid>
   );

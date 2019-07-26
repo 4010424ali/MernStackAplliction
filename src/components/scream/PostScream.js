@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
 import { connect, useSelector } from 'react-redux';
-import { postScream } from '../redux/actions/dataActions';
+import { postScream } from '../../redux/actions/dataActions';
 
 const useStyles = makeStyles({
   textField: {

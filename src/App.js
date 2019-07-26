@@ -19,7 +19,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 // Component
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 
 const theme = createMuiTheme({

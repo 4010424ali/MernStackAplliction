@@ -8,8 +8,8 @@ import { getScreams } from '../redux/actions/dataActions';
 import Grid from '@material-ui/core/Grid';
 
 // Compoents import
-import Scream from '../components/Scream';
-import Profile from '../components/Profile';
+import Scream from '../components/scream/Scream';
+import Profile from '../components/profiles/Profile';
 
 const Home = props => {
   useEffect(() => {

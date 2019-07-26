@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Compoents
-import PostScream from './PostScream';
+import PostScream from '../scream/PostScream';
 
 // Material ui stuff
 import AppBar from '@material-ui/core/AppBar';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // material-ui stuff
-import themeFile from '../util/theme';
+import themeFile from '../../util/theme';
 import { makeStyles } from '@material-ui/core/styles';
 import ToolTip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,7 +18,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // redux import
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userAction';
+import { editUserDetails } from '../../redux/actions/userAction';
 
 const useStyles = makeStyles(themeFile);
 
