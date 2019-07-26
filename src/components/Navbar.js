@@ -16,7 +16,6 @@ import ToolTip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 
 // Icons
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
 

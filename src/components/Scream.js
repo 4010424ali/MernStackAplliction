@@ -5,6 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 // components
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
 
 // redux import
 import { connect } from 'react-redux';
@@ -45,7 +46,7 @@ const Scream = props => {
   const likedScream = () => {
     if (
       props.user.likes &&
-      props.user.likes.find(like => like.screamId === props.scream.screamsId)
+      props.user.likes.find(like => like.screamId === props.scream.screamId)
     ) {
       return true;
     } else {
@@ -54,17 +55,17 @@ const Scream = props => {
   };
 
   const likeScreams = () => {
-    props.likeScream(props.scream.screamsId);
+    props.likeScream(props.scream.screamId);
   };
   const unLikeScream = () => {
-    props.unLikeScream(props.scream.screamsId);
+    props.unLikeScream(props.scream.screamId);
   };
   const {
     body,
     userImage,
     created_at,
     userHandle,
-    screamsId,
+    screamId,
     likeCount,
     commentCount
   } = props.scream;
@@ -101,7 +102,7 @@ const Scream = props => {
   );
   const deleteButton =
     authenticated && userHandle === handle ? (
-      <DeleteScream screamsId={screamsId} />
+      <DeleteScream screamsId={screamId} />
     ) : null;
   return (
     <Card className={classes.card}>
@@ -132,6 +133,7 @@ const Scream = props => {
           </IconButton>
         </ToolTip>
         <span>{commentCount} comments</span>
+        <ScreamDialog screamId={screamId} userHandle={userHandle} />
       </CardContent>
     </Card>
   );

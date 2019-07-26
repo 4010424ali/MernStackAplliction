@@ -22,7 +22,7 @@ const Home = props => {
       <Grid item sm={8} xs={12}>
         {!loading ? (
           screams.map(scream => (
-            <Scream key={scream.screamsId} scream={scream} />
+            <Scream key={scream.screamId} scream={scream} />
           ))
         ) : (
           <p>Loading.....</p>
