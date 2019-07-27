@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+
+// component import
 import LikedButton from './LikeButton';
 import Comments from './Comments';
+import CommentFrom from './CommentFrom';
 
 // MATERIAL-UI STUFF
 import { makeStyles } from '@material-ui/core/styles';
@@ -110,6 +113,7 @@ const ScreamDialog = props => {
         <span>{commentCount} comments</span>
       </Grid>
       <hr className={classes.invisibleSaprater} />
+      <CommentFrom screamId={screamId} />
       <Comments comments={comments} />
     </Grid>
   );

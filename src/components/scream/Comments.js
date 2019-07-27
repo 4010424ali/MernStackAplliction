@@ -17,12 +17,11 @@ const useStyles = makeStyles({
     margin: 4
   },
   commentImage: {
-    maxWidth: '100%',
+    maxWidth: '7rem',
     height: 100,
     objectFit: 'cover',
     borderRadius: '50%',
-    marginLeft: '2rem',
-    alignSelf: 'center'
+    marginLeft: '2rem'
   },
   commentData: {
     marginLeft: 20
@@ -35,7 +34,7 @@ const Comments = props => {
 
   return (
     <Grid container>
-      {comments.map(comment => {
+      {comments.map((comment, index) => {
         const { body, created_at, userImage, userHamdle } = comment;
         return (
           <>
@@ -67,7 +66,9 @@ const Comments = props => {
                 </Grid>
               </Grid>
             </Grid>
-            <hr className={classes.visibleSaparators} />
+            {index === comments.length - 1 ? null : (
+              <hr className={classes.visibleSaparators} />
+            )}
           </>
         );
       })}
