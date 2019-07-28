@@ -70,6 +70,9 @@ const theme = createMuiTheme({
   }
 });
 
+axios.defaults.baseURL =
+  'https://us-central1-reactapp-17329.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 // let authenticated;
 if (token) {
