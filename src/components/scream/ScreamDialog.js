@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
@@ -57,13 +57,38 @@ const useStyle = makeStyles({
 const ScreamDialog = props => {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
+  const [oldPath, setOldPath] = useState('');
+  const [newPath, setNewPath] = useState('');
+
+  useEffect(() => {
+    if (props.openDialog) {
+      handleOpen();
+    }
+  }, []);
 
   const handleOpen = () => {
+    let oldPath = window.location.pathname;
+
+    const { userHandle, screamId } = props;
+
+    const newPath = `/user/${userHandle}/scream/${screamId}`;
+
+    if (oldPath === newPath) oldPath = `/users/${userHandle}`;
+
+    window.history.pushState(null, null, newPath);
+
+    setOldPath(oldPath);
+
+    setNewPath(newPath);
+
     setOpen(true);
+
     props.getScream(props.screamId);
   };
 
   const handleClose = () => {
+    window.history.pushState(null, null, oldPath);
+
     setOpen(false);
   };
   const {

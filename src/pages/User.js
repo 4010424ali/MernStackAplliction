@@ -13,9 +13,17 @@ import { getUserData } from '../redux/actions/dataActions';
 
 const User = props => {
   const [profile, setProfile] = useState(null);
+  const [screamIdParam, setScreamIdParam] = useState(null);
 
   useEffect(() => {
     const handle = props.match.params.handle;
+    const screamId = props.match.params.screamId;
+
+    console.log(handle, screamId);
+
+    if (screamId) {
+      setScreamIdParam(screamId);
+    }
     props.getUserData(handle);
     axios
       .get(`/user/${handle}`)
@@ -33,9 +41,19 @@ const User = props => {
             <p>Loading data...</p>
           ) : screams === null ? (
             <p>No Scream From This User</p>
-          ) : (
+          ) : !screamIdParam ? (
             screams.map(scream => {
               return <Scream key={scream.screamId} scream={scream} />;
+            })
+          ) : (
+            screams.map(scream => {
+              if (scream.screamId !== screamIdParam) {
+                return <Scream key={scream.screamId} scream={scream} />;
+              } else {
+                return (
+                  <Scream key={scream.screamId} scream={scream} openDialog />
+                );
+              }
             })
           )}
         </Grid>
