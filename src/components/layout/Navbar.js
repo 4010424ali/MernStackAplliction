@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 // Compoents
 import PostScream from '../scream/PostScream';
+import Notifications from './Notifications';
 
 // Material ui stuff
 import AppBar from '@material-ui/core/AppBar';
@@ -17,7 +18,6 @@ import IconButton from '@material-ui/core/IconButton';
 
 // Icons
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications';
 
 const Navbar = props => {
   const { authenticated } = props;
@@ -34,11 +34,7 @@ const Navbar = props => {
                 </IconButton>
               </ToolTip>
             </Link>
-            <ToolTip title="Notifications" placement="top">
-              <IconButton>
-                <Notifications />
-              </IconButton>
-            </ToolTip>
+            <Notifications />
           </>
         ) : (
           <>

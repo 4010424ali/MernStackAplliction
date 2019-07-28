@@ -5,7 +5,8 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  MARK_NOTIFICATION_READ
 } from '../types';
 
 export const loginUser = (userData, history) => dispatch => {
@@ -71,6 +72,17 @@ export const uploadImage = formData => dispatch => {
     .post('/user/image', formData)
     .then(() => {
       dispatch(getUserData());
+    })
+    .catch(err => console.log(err));
+};
+
+export const markNotificationRead = notificationsId => dispatch => {
+  axios
+    .post('/notifications', notificationsId)
+    .then(res => {
+      dispatch({
+        type: MARK_NOTIFICATION_READ
+      });
     })
     .catch(err => console.log(err));
 };
