@@ -39,8 +39,6 @@ const Notifications = props => {
     props.markNotificationRead(unReadNotificationIds);
   };
 
-  // const { notifications } = props.notifications;
-  console.log(notifications.filter(noti => noti.read === false).length);
   let notificationIcon;
   if (notifications && notifications.length > 0) {
     notifications.filter(noti => noti.read === false).length > 0
@@ -73,7 +71,7 @@ const Notifications = props => {
           );
 
         return (
-          <MenuItem key={noti} onClick={handleClose}>
+          <MenuItem key={noti.notificationId} onClick={handleClose}>
             {icon}
             <Typography
               variant="body1"
@@ -112,10 +110,6 @@ const Notifications = props => {
     </>
   );
 };
-
-// const mapStateToProps = state => ({
-//   notifications: state.user.notifications
-// });
 
 export default connect(
   null,

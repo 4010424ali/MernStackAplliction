@@ -4,6 +4,8 @@ import axios from 'axios';
 // Components
 import Scream from '../components/scream/Scream';
 import StaticProfile from '../components/profiles/StaticProfile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
+import ProfileSkeleton from '../util/ProfileSkelton';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -18,8 +20,6 @@ const User = props => {
   useEffect(() => {
     const handle = props.match.params.handle;
     const screamId = props.match.params.screamId;
-
-    console.log(handle, screamId);
 
     if (screamId) {
       setScreamIdParam(screamId);
@@ -38,7 +38,7 @@ const User = props => {
       <Grid container spacing={10}>
         <Grid item sm={8} xs={12}>
           {loading ? (
-            <p>Loading data...</p>
+            <ScreamSkeleton />
           ) : screams === null ? (
             <p>No Scream From This User</p>
           ) : !screamIdParam ? (
@@ -59,7 +59,7 @@ const User = props => {
         </Grid>
         <Grid item sm={4} xs={12}>
           {profile === null ? (
-            <p>Profile is loading</p>
+            <ProfileSkeleton />
           ) : (
             <StaticProfile profile={profile} />
           )}

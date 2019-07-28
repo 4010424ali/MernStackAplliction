@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -37,7 +37,7 @@ const Comments = props => {
       {comments.map((comment, index) => {
         const { body, created_at, userImage, userHamdle } = comment;
         return (
-          <>
+          <Fragment key={created_at}>
             <Grid item sm={12}>
               <Grid container>
                 <Grid item sm={3}>
@@ -69,7 +69,7 @@ const Comments = props => {
             {index === comments.length - 1 ? null : (
               <hr className={classes.visibleSaparators} />
             )}
-          </>
+          </Fragment>
         );
       })}
     </Grid>

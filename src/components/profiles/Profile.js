@@ -9,6 +9,7 @@ import { uploadImage, logOutUser } from '../../redux/actions/userAction';
 
 // components import
 import EditDetails from './EditDetails';
+import ProfileSkeleton from '../../util/ProfileSkelton';
 
 // MUI stuff
 import { makeStyles } from '@material-ui/core/styles';
@@ -139,7 +140,7 @@ const Profile = props => {
       </Paper>
     )
   ) : (
-    <p>Loadding</p>
+    <ProfileSkeleton />
   );
 
   return profileMarkUp;

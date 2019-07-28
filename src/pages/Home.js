@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 // Compoents import
 import Scream from '../components/scream/Scream';
 import Profile from '../components/profiles/Profile';
+import ScreamSkeleton from '../util/ScreamSkeleton';
 
 const Home = props => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const Home = props => {
             <Scream key={scream.screamId} scream={scream} />
           ))
         ) : (
-          <p>Loading.....</p>
+          <ScreamSkeleton />
         )}
       </Grid>
       <Grid item sm={4} xs={12}>
